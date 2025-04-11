@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from app.routes import auth
+from app.routes import doctor
+from app.routes import patient
 
 app = FastAPI()
 

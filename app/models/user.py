@@ -33,6 +33,7 @@ class User(Base):
     permissions = relationship("Permission", secondary="user_permissions")
 
     patient_profile = relationship("Patient", back_populates="user", uselist=False)
+    doctor_profile = relationship("Doctor", back_populates="user", uselist=False)
 
     def verify_password(self, password: str):
         return pwd_context.verify(password, self.hashed_password)

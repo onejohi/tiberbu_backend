@@ -1,4 +1,3 @@
-# routes/patient.py
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.models.base import get_db

@@ -1,4 +1,3 @@
-# schemas/patient.py
 from pydantic import BaseModel
 
 class PatientBase(BaseModel):
