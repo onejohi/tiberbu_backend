@@ -32,6 +32,8 @@ class User(Base):
     role = relationship("Role", back_populates="users")
     permissions = relationship("Permission", secondary="user_permissions")
 
+    patient_profile = relationship("Patient", back_populates="user", uselist=False)
+
     def verify_password(self, password: str):
         return pwd_context.verify(password, self.hashed_password)
 
@@ -45,7 +47,6 @@ class UserPermission(Base):
     user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
     permission_id = Column(Integer, ForeignKey("permissions.id"), primary_key=True)
 
-# Pydantic model for request validation
 class UserCreate(BaseModel):
     username: str
     email: str

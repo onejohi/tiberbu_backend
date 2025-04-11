@@ -11,7 +11,10 @@ class Patient(Base):
     date_of_birth = Column(Date)
     phone_number = Column(String, unique=True)
     email = Column(String, unique=True)
+    insurance_provider = Column(String)
+    identification_number = Column(String, unique=True)
     insurance_number = Column(String, unique=True)
     is_active = Column(Boolean, default=True)
 
+    user = relationship("User", back_populates="patient_profile")
     appointments = relationship("Appointment", back_populates="patient")
