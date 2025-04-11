@@ -18,3 +18,5 @@ class Patient(Base):
 
     user = relationship("User", back_populates="patient_profile")
     appointments = relationship("Appointment", back_populates="patient")
+    medical_records = relationship("MedicalRecord", back_populates="patient", cascade="all, delete")
+

@@ -16,6 +16,8 @@ class Appointment(Base):
   patient_id = Column(Integer, ForeignKey("patients.id"))
   doctor_id = Column(Integer, ForeignKey("doctors.id"))
   scheduled_at = Column(DateTime, default=func.now())
+  start_time = Column(DateTime, nullable=False)
+  end_time = Column(DateTime, nullable=False)
   status = Column(Enum(AppointmentStatus, name="appointment_status_enum"), default=AppointmentStatus.scheduled)
 
   patient = relationship("Patient", back_populates="appointments")

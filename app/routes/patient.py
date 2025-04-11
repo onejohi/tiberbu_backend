@@ -1,7 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.models.base import get_db
-from app.models import Patient
+from app.models.patient import Patient
+from app.models.doctor import Doctor
 from app.schemas import PatientCreate, PatientOut
 from typing import List, Optional
 from fastapi import Query
@@ -21,10 +22,10 @@ def create_patient(patient: PatientCreate, db: Session = Depends(get_db)):
 
 @router.get("/{patient_id}", response_model=PatientOut)
 def get_patient(patient_id: int, db: Session = Depends(get_db)):
-    patient = db.query(Patient).filter_by(id=patient_id).first()
-    if not patient:
-        raise HTTPException(status_code=404, detail="Patient not found.")
-    return patient
+  patient = db.query(Patient).filter_by(id=patient_id).first()
+  if not patient:
+      raise HTTPException(status_code=404, detail="Patient not found.")
+  return patient
 
 @router.get("/", response_model=List[PatientOut])
 def get_patients(
